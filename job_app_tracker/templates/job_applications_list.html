@@ -1,0 +1,6 @@
+<h2>Job Applications</h2>
+<ul>
+{% for application in applications %}
+    <li>{{ application.title }} at {{ application.company }}</li>
+{% endfor %}
+</ul>
