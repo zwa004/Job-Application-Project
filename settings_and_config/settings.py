@@ -49,7 +49,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "jobappproject.urls"
+ROOT_URLCONF = 'settings_and_config.urls'
 
 TEMPLATES = [
     {
@@ -67,7 +67,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "jobappproject.wsgi.application"
+WSGI_APPLICATION = "settings_and_config.wsgi.application"
 
 
 # Database
@@ -76,11 +76,11 @@ WSGI_APPLICATION = "jobappproject.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": BASE_DIR / "Main",
-        "User": "postgres",
-        "Password": "Metcon202$",
-        "Host": "localhost",
-        "Port": "5432"
+        "NAME": "Main",
+        "USER": "postgres",
+        "PASSWORD": "Metcon202$",
+        "HOST": "localhost",
+        "PORT": "5432"
     }
 }
 
