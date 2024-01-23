@@ -75,19 +75,19 @@ WSGI_APPLICATION = "settings_and_config.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-import os
+from dotenv import load_dotenv
+load_dotenv()
 
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.environ.get("DB_NAME", "default_db_name"),
-        "USER": os.environ.get("DB_USER", "default_user"),
-        "PASSWORD": os.environ.get("DB_PASSWORD", "default_password"),
-        "HOST": os.environ.get("DB_HOST", "localhost"),
-        "PORT": os.environ.get("DB_PORT", "5432"),
+        "NAME": os.getenv("DB_NAME", "default_db_name"),
+        "USER": os.getenv("DB_USER", "default_user"),
+        "PASSWORD": os.getenv("DB_PASSWORD", "default_password"),
+        "HOST": os.getenv("DB_HOST", "localhost"),
+        "PORT": os.getenv("DB_PORT", "5432"),
     }
 }
-
 
 
 # Password validation
