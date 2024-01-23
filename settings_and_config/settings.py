@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "job_app_tracker"
 ]
 
 MIDDLEWARE = [
@@ -73,16 +75,19 @@ WSGI_APPLICATION = "settings_and_config.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+import os
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "Main",
-        "USER": "postgres",
-        "PASSWORD": "Metcon202$",
-        "HOST": "localhost",
-        "PORT": "5432"
+        "NAME": os.environ.get("DB_NAME", "default_db_name"),
+        "USER": os.environ.get("DB_USER", "default_user"),
+        "PASSWORD": os.environ.get("DB_PASSWORD", "default_password"),
+        "HOST": os.environ.get("DB_HOST", "localhost"),
+        "PORT": os.environ.get("DB_PORT", "5432"),
     }
 }
+
 
 
 # Password validation
