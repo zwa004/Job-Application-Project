@@ -1,8 +1,14 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <title>Job Application Tracking</title>
+    <style>
+        ul {
+            list-style-type: none;
+        }
+    </style>
 </head>
 <body>
     {% block content %}
@@ -11,10 +17,12 @@
     <ul>
         <li><a href="/applications/new/">Create Job Application</a></li>
         <li><a href="/applications/">View Job Applications</a></li>
+        <li><a href="{% url 'statistics_view' %}">Statistics</a></li>
     </ul>
     {% endblock %}
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>

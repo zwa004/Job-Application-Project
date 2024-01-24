@@ -8,6 +8,8 @@
 </head>
 <body>
     <h1>Create Job Application</h1>
+    <a href="{% url 'home' %}">
+        <button>Home</button> </a>
     {% for message in messages %}
         <div>
             {{ message }}
@@ -18,9 +20,6 @@
         {{ form.as_p }}
         <button type="submit">Save</button>
     </form>
-    <a href="{% url 'home' %}">
-        <button>Home</button>
-    </a>
 </body>
 </html>
 {% endblock %}
