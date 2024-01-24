@@ -1,3 +1,6 @@
+{% extends 'home.html' %}
+{% block content %}
+
 <h1>Job Applications</h1>
 <style>
     table {
@@ -36,6 +39,7 @@
             <th>Salary Range</th>
             <th>Experience Level</th>
             <th>Job Description</th>
+            <th>Status</th> <!-- Added Status Header -->
             <th>Actions</th>
         </tr>
     </thead>
@@ -49,17 +53,19 @@
                 <td>{{ application.salary_range }}</td>
                 <td>{{ application.experience_level }}</td>
                 <td>{{ application.job_description }}</td>
+                <td>{{ application.get_status_display }}</td> <!-- Display Status -->
                 <td>
                     <a href="{% url 'edit_job_application' application.id %}">Edit</a>
-                    <a href="{% url 'delete_job_application' application.id %}">Delete</a>
+                    <!-- Add a delete link if implemented -->
                 </td>
             </tr>
         {% empty %}
             <tr>
-                <td colspan="8">No applications yet.</td>
+                <td colspan="9">No applications yet.</td> <!-- Updated colspan to 9 -->
             </tr>
         {% endfor %}
     </tbody>
 </table>
 
 <a href="/">Home</a>
+{% endblock %}

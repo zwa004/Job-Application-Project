@@ -44,6 +44,21 @@ class JobApp(models.Model):
     ]
     industry = models.CharField(max_length=20, choices=INDUSTRY_CHOICES)
 
+    STATUS_CHOICES = [
+        ('applied', 'Applied'),
+        ('under_review', 'Under Review'),
+        ('interview_scheduled', 'Interview Scheduled'),
+        ('interviewed', 'Interviewed'),
+        ('offer_received', 'Offer Received'),
+        ('offer_accepted', 'Accepted Offer'),
+        ('rejected', 'Rejected'),
+        ('withdrawn', 'Withdrawn'),
+        ('no_response', 'No Response'),
+        ('awaiting_decision', 'Awaiting Decision'),
+    ]
+
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='applied')
+
     # Create string representation of data collected
     def __str__(self):
         return self.title
