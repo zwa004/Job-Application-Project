@@ -4,4 +4,4 @@ from .models import JobApp
 class JobAppForm(forms.ModelForm):
     class Meta:
         model = JobApp
-        fields = ['title', 'company', 'date_applied', 'application_url', 'salary_range', 'experience_level', 'industry','status','job_description', 'resume', 'cover_letter']
+        fields = ['title', 'company', 'date_applied', 'application_url', 'salary_range', 'experience_level', 'industry','status','employment_type','job_description', 'resume', 'cover_letter']

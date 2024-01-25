@@ -11,6 +11,16 @@ class JobApp(models.Model):
     file = models.FileField(upload_to='uploads/', null=True, blank=True)
     resume = models.FileField(upload_to='resumes/', null=True, blank=True)
     cover_letter = models.FileField(upload_to='cover_letters/', null=True, blank=True)
+    EMPLOYMENT_TYPE_CHOICES = [
+        ('full_time', 'Full Time'),
+        ('part_time', 'Part Time'),
+        ('contract', 'Contract'),
+        ('temporary', 'Temporary'),
+        ('internship', 'Internship'),
+        ('freelance', 'Freelance'),
+    ]
+
+    employment_type = models.CharField(max_length=20, choices=EMPLOYMENT_TYPE_CHOICES, default='full_time')
     SALARY_CHOICES = [
         ('<30000', 'Less than $30,000'),
         ('30000-35000', '$30,000 - $35,000'),
