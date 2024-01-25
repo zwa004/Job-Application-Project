@@ -1,25 +1,20 @@
 {% extends 'home.html' %}
 {% block content %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" type="text/css" href="{% static 'job_app_tracker/styles.css' %}">
-</head>
-<body>
-    <h1>Create Job Application</h1>
-    <a href="{% url 'home' %}">
-        <button>Home</button> </a>
-    {% for message in messages %}
-        <div>
-            {{ message }}
-        </div>
-    {% endfor %}
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save</button>
-    </form>
-</body>
-</html>
+
+<h1>Create Job Application</h1>
+<a href="{% url 'home' %}">
+    <button>Home</button>
+</a>
+{% for message in messages %}
+    <div>
+        {{ message }}
+    </div>
+{% endfor %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+
 {% endblock %}

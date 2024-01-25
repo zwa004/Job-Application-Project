@@ -8,6 +8,7 @@ def job_application_list(request):
     applications = JobApp.objects.all()
     return render(request, 'job_app_tracker/job_application_list.html', {'applications': applications})
 
+# Add statistics
 def statistics_view(request):
     applications_by_status = JobApp.objects.values('status').annotate(status_count=Count('status')).order_by('status')
     applications_by_company = JobApp.objects.values('company').annotate(company_count=Count('company')).order_by('company')
@@ -29,7 +30,6 @@ def statistics_view(request):
 
     return render(request, 'job_app_tracker/statistics.html', context)
 
-
 def home(request):
     return render(request, 'home.html')
 
@@ -38,15 +38,26 @@ def delete_job_application(request, pk):
     application.delete()
     return redirect('job_application_list')
 
+def delete_all_job_applications(request):
+    if request.method == 'POST':
+        JobApp.objects.all().delete()
+        messages.success(request, 'All applications successfully deleted.')
+        return redirect('job_application_list')
+    else:
+        return render(request, 'job_app_tracker/confirm_delete_all.html')
+
 def create_job_application(request):
     if request.method == 'POST':
-        form = JobAppForm(request.POST)
+        form = JobAppForm(request.POST, request.FILES)
+        print("FILES:", request.FILES)
         if form.is_valid():
-            form.save()
+            job_app = form.save() # Debugging
+            print("Saved file path:", job_app.file.path) # Debugging
             messages.success(request, 'Application successfully submitted.')
             return redirect('job_application_list')
         else:
             messages.error(request, 'Application submission failed.')
+            print(form.errors)
     else:
         form = JobAppForm()
 

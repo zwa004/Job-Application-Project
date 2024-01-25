@@ -1,6 +1,6 @@
 from django.db import models
 
-# Create model for form collecting Job Title, Company, Date Applied, Application URL, Salary Range, Experience Level and Job Description
+# Create model for form collecting Job Title, Company, Date Applied, Application URL, Salary Range, Experience Level, Job Description, etc
 class JobApp(models.Model):
     title = models.CharField(max_length=200)
     company = models.CharField(max_length=200)
@@ -8,6 +8,7 @@ class JobApp(models.Model):
     application_url = models.CharField(max_length=200)
     experience_level = models.CharField(max_length=200)
     job_description = models.CharField(max_length=2000)
+    file = models.FileField(upload_to='uploads/', null=True, blank=True)
     SALARY_CHOICES = [
         ('<30000', 'Less than $30,000'),
         ('30000-35000', '$30,000 - $35,000'),

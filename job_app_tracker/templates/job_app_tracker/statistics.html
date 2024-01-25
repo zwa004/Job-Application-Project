@@ -7,38 +7,7 @@
 <canvas id="applications-by-status-chart"></canvas>
 <canvas id="applications-by-company-chart"></canvas>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- Removed JavaScript code for Chart.js and its library -->
 
-<script>
-    var statusData = {{ applications_by_status|safe }};
-    var companyData = {{ applications_by_company|safe }};
-
-
-    var ctx1 = document.getElementById('applications-by-status-chart').getContext('2d');
-    new Chart(ctx1, {
-        type: 'bar',
-        data: {
-            labels: statusData.labels,
-            datasets: [{
-                label: 'Job Application Status',
-                data: statusData.data,
-                backgroundColor: ['red', 'blue', 'green', 'yellow', 'purple', 'orange'],
-            }]
-        },
-    });
-
-    var ctx2 = document.getElementById('applications-by-company-chart').getContext('2d');
-    new Chart(ctx2, {
-        type: 'bar',
-        data: {
-            labels: companyData.labels,
-            datasets: [{
-                label: 'Job Applications by Company',
-                data: companyData.data,
-                backgroundColor: ['red', 'blue', 'green', 'yellow', 'purple', 'orange'],
-            }]
-        },
-    });
-</script>
 <a href="/">Home</a>
 {% endblock %}

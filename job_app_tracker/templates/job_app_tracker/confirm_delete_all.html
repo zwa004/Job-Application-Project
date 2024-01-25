@@ -1,0 +1,10 @@
+{% extends 'home.html' %}
+
+{% block content %}
+  <h2>Are you sure you want to delete all applications?</h2>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Yes, delete all</button>
+  </form>
+  <a href="{% url 'job_application_list' %}">No, take me back</a>
+{% endblock %}
