@@ -2,35 +2,8 @@
 {% block content %}
 
 <h1>Job Applications</h1>
-<a href="/">Home</a>
-<style>
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    th, td {
-        border: 1px solid #ddd;
-        padding: 8px;
-    }
-    th {
-        background-color: #4CAF50;
-        color: white;
-    }
-    tr:nth-child(even) {
-        background-color: #f2f2f2;
-    }
-    tr:hover {
-        background-color: #ddd;
-    }
-    a {
-        color: #4CAF50;
-        text-decoration: none;
-    }
-    a:hover {
-        color: #45a049;
-    }
-</style>
-<table>
+<a href="{% url 'create_job_application' %}">Add New Application</a> | <a href="/">Home</a>
+<table class="table table-striped">
     <thead>
         <tr>
             <th>Title</th>
@@ -40,7 +13,7 @@
             <th>Salary Range</th>
             <th>Experience Level</th>
             <th>Job Description</th>
-            <th>Status</th> <!-- Added Status Header -->
+            <th>Status</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -54,15 +27,16 @@
                 <td>{{ application.salary_range }}</td>
                 <td>{{ application.experience_level }}</td>
                 <td>{{ application.job_description }}</td>
-                <td>{{ application.get_status_display }}</td> <!-- Display Status -->
+                <td>{{ application.get_status_display }}</td>
                 <td>
-                    <a href="{% url 'edit_job_application' application.id %}">Edit</a>
-                    <a href="{% url 'delete_job_application' application.id %}" onclick="return confirm('Are you sure you want to delete this application?');">Delete</a>
-                    {% if application.file %}
-                    | <a href="{{ application.file.url }}">Download</a>
-                {% else %}
-                    | No file attached
-                {% endif %}
+                    <a href="{% url 'edit_job_application' application.id %}" class="btn btn-secondary btn-sm">Edit</a>
+                        <a href="{% url 'delete_job_application' application.id %}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this application?');">Delete</a>
+                        {% if application.resume %}
+                            <a href="{{ application.resume.url }}" target="_blank" class="btn btn-info btn-sm">Resume</a>
+                        {% endif %}
+                        {% if application.cover_letter %}
+                            <a href="{{ application.cover_letter.url }}" target="_blank" class="btn btn-info btn-sm">Cover Letter</a>
+                        {% endif %}
                 </td>
             </tr>
         {% empty %}
@@ -73,4 +47,5 @@
     </tbody>
 </table>
 <a href="{% url 'delete_all_job_applications' %}">Delete All Applications</a>
+
 {% endblock %}

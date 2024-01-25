@@ -1,7 +1,10 @@
-<h1>Edit Job Application</h1>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Update</button>
-</form>
-<a href="{% url 'job_application_list' %}">Back to list</a>
+{% block content %}
+<div class="container mt-5">
+    <form method="post" class="form-group">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <a href="{% url 'job_application_list' %}" class="btn btn-secondary mt-3">Back to Job Applications</a>
+</div>
+{% endblock %}

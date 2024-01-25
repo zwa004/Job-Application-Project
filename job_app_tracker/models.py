@@ -9,6 +9,8 @@ class JobApp(models.Model):
     experience_level = models.CharField(max_length=200)
     job_description = models.CharField(max_length=2000)
     file = models.FileField(upload_to='uploads/', null=True, blank=True)
+    resume = models.FileField(upload_to='resumes/', null=True, blank=True)
+    cover_letter = models.FileField(upload_to='cover_letters/', null=True, blank=True)
     SALARY_CHOICES = [
         ('<30000', 'Less than $30,000'),
         ('30000-35000', '$30,000 - $35,000'),

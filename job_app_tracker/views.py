@@ -49,11 +49,8 @@ def delete_all_job_applications(request):
 def create_job_application(request):
     if request.method == 'POST':
         form = JobAppForm(request.POST, request.FILES)
-        print("FILES:", request.FILES)
         if form.is_valid():
-            job_app = form.save() # Debugging
-            print("Saved file path:", job_app.file.path) # Debugging
-            messages.success(request, 'Application successfully submitted.')
+            form.save()
             return redirect('job_application_list')
         else:
             messages.error(request, 'Application submission failed.')
@@ -66,10 +63,12 @@ def create_job_application(request):
 def edit_job_application(request, pk):
     application = JobApp.objects.get(pk=pk)
     if request.method == "POST":
-        form = JobAppForm(request.POST, instance=application)
+        form = JobAppForm(request.POST, request.FILES, instance=application)
         if form.is_valid():
             form.save()
             return redirect('job_application_list')
     else:
         form = JobAppForm(instance=application)
-    return render(request, 'job_app_tracker/edit_job_application.html', {'form': form})
+
+    return render(request, 'job_app_tracker/edit_job_application.html', {'form': form, 'application': application})
+

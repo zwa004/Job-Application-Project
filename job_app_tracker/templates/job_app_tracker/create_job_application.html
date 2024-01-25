@@ -1,20 +1,12 @@
 {% extends 'home.html' %}
 {% block content %}
-{% load static %}
 
 <h1>Create Job Application</h1>
-<a href="{% url 'home' %}">
-    <button>Home</button>
-</a>
-{% for message in messages %}
-    <div>
-        {{ message }}
-    </div>
-{% endfor %}
+<a href="{% url 'job_application_list' %}">View Submitted Job Applications</a><br>
+<a href="{% url 'home' %}">Home</a>
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Save</button>
 </form>
-
 {% endblock %}
